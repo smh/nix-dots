@@ -3,41 +3,44 @@
 
   inputs = {
     nixpkgs.url = "github:NixOS/nixpkgs/nixpkgs-unstable";
-    nix-darwin.url = "github:LnL7/nix-darwin";
-    nix-darwin.inputs.nixpkgs.follows = "nixpkgs";
+    nix-darwin = {
+      url = "github:LnL7/nix-darwin";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+
+    home-manager = {
+      url = "github:nix-community/home-manager";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
   };
 
-  outputs = inputs@{ self, nix-darwin, nixpkgs }:
+  outputs = inputs@{ self, nix-darwin, home-manager, nixpkgs }:
   let
     configuration = { pkgs, ... }: {
       # List packages installed in system profile. To search by name, run:
       # $ nix-env -qaP | grep wget
       environment.systemPackages = with pkgs; [
+          bat
+          broot
+          coreutils
           curl
+          delta
+          difftastic
+          fd
           fish
+          fzf
           git
           git-extras
-          neovim
-
-          ripgrep
-          #the_silver_searcher
-          difftastic
-          delta
-          broot
-          bat
+          htop
           jq
-          yq
-
+          neovim
+          ripgrep
           starship
-
-          # Core Utils
-          coreutils
-          #gnu-sed
-
           tmux
           vim
           wezterm
           wget
+          yq
         ];
 
       # Auto upgrade nix package and the daemon service.
@@ -71,7 +74,18 @@
     # Build darwin flake using:
     # $ darwin-rebuild build --flake .#nostalgia
     darwinConfigurations."nostalgia" = nix-darwin.lib.darwinSystem {
-      modules = [ configuration ];
+      modules = [
+        configuration
+        home-manager.darwinModules.home-manager
+          {
+            home-manager.useGlobalPkgs = true;
+            home-manager.useUserPackages = true;
+            home-manager.users.smh = import ./home.nix;
+
+            # Optionally, use home-manager.extraSpecialArgs to pass
+            # arguments to home.nix
+          }
+      ];
     };
 
     # Expose the package set, including overlays, for convenience.
