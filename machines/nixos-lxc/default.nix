@@ -9,13 +9,6 @@
     ../../modules/nixos
   ];
 
-  boot.isContainer = true;
-  systemd.suppressedSystemUnits = [
-    "dev-mqueue.mount"
-    "sys-kernel-debug.mount"
-    "sys-fs-fuse-connections.mount"
-  ];
-
   home-manager = {
     extraSpecialArgs = {inherit inputs outputs;};
     useGlobalPkgs = true;

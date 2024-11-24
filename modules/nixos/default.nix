@@ -37,7 +37,13 @@
   # nix.package = pkgs.nix;
 
   # Necessary for using flakes on this system.
-  nix.settings.experimental-features = "nix-command flakes";
+  nix.settings = {
+    experimental-features = [ "nix-command" "flakes" ];
+    trusted-users = [ "root" "smh" ];  # Add any other trusted users
+    trusted-public-keys = [ "local-builder:wBAYW4YNZiiqRtjw+iXYEglSDHlwDc7RpCcH1AQpXHA=" ];
+    accept-flake-config = true;
+    allowed-users = [ "@wheel" ];
+  };
 
   # Set Git commit hash for darwin-version.
   system.configurationRevision = self.rev or self.dirtyRev or null;
@@ -56,6 +62,19 @@
     shell = pkgs.fish;
     home = "/home/smh";
     isNormalUser = true;
-    extraGroups = [ "wheel" ];
+    extraGroups = [ "wheel" "networkmanager" ];
+    openssh.authorizedKeys.keys = [
+      "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIGDdhFAELwOVPH8ywfeOqgty+vMtepL+vftzh8xIOF3Y smh@Jennifer.svingen"
+    ];
+  };
+
+  # Enable password-based SSH login for root
+  services.openssh = {
+    enable = true;
+    #settings = {
+    #  AllowUsers = null; # everyone
+    #  PasswordAuthentication = true; # this is just a sandbox
+    #  PermitRootLogin = "yes";
+    #};
   };
 }
