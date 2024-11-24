@@ -39,13 +39,22 @@
   # Necessary for using flakes on this system.
   nix.settings = {
     experimental-features = [ "nix-command" "flakes" ];
-    trusted-users = [ "root" "smh" ];  # Add any other trusted users
+    trusted-users = [ "root" "smh" "@wheel" ];  # Add any other trusted users
     trusted-public-keys = [ "local-builder:HT9p32L2PhqcLjmuhpcr/7y+AtUunP4vGQhJT7Zo+0Q=" ];
     accept-flake-config = true;
     allowed-users = [ "@wheel" ];
   };
 
-  # Set Git commit hash for darwin-version.
+  # Enable mDNS for `hostname.local` addresses
+  services.avahi = {
+    enable = true;
+    nssmdns = true;
+    publish = {
+      enable = true;
+      addresses = true;
+    };
+  };
+
   system.configurationRevision = self.rev or self.dirtyRev or null;
 
   # Used for backwards compatibility, please read the changelog before changing.
@@ -71,10 +80,10 @@
   # Enable password-based SSH login for root
   services.openssh = {
     enable = true;
-    #settings = {
-    #  AllowUsers = null; # everyone
-    #  PasswordAuthentication = true; # this is just a sandbox
-    #  PermitRootLogin = "yes";
-    #};
+    settings = {
+      AllowUsers = null; # everyone
+      PasswordAuthentication = true; # this is just a sandbox
+      PermitRootLogin = "yes";
+    };
   };
 }
