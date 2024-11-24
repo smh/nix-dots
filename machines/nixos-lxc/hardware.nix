@@ -1,4 +1,11 @@
 { inputs, outputs, ... }: {
+
+  networking = {
+    dhcpcd.enable = false;
+    useDHCP = false;
+    useHostResolvConf = false;
+  };
+
   systemd.network = {
     enable = true;
     networks."50-eth0" = {
