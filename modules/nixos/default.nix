@@ -40,7 +40,7 @@
   nix.settings = {
     experimental-features = [ "nix-command" "flakes" ];
     trusted-users = [ "root" "smh" ];  # Add any other trusted users
-    trusted-public-keys = [ "local-builder:wBAYW4YNZiiqRtjw+iXYEglSDHlwDc7RpCcH1AQpXHA=" ];
+    trusted-public-keys = [ "local-builder:HT9p32L2PhqcLjmuhpcr/7y+AtUunP4vGQhJT7Zo+0Q=" ];
     accept-flake-config = true;
     allowed-users = [ "@wheel" ];
   };
