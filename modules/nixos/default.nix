@@ -50,10 +50,12 @@
 
   programs.fish.enable = true;
   environment.shells = [pkgs.fish];
-  users.knownUsers = ["smh"];
+  # users.knownUsers = ["smh"];
   users.users.smh = {
-    uid = 501;
+    # uid = 501;
     shell = pkgs.fish;
-    home = "/Users/smh";
+    home = "/home/smh";
+    isNormalUser = true;
+    extraGroups = [ "wheel" ];
   };
 }
