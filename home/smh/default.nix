@@ -3,8 +3,6 @@
   pkgs,
   ...
 }: {
-  # Home Manager needs a bit of information about you and the
-  # paths it should manage.
   home = {
     username = "smh";
     homeDirectory = "/Users/smh";
@@ -51,6 +49,9 @@
     starship = {
       enable = true;
       enableFishIntegration = true;
+    };
+    wezterm = {
+      enable = true;
     };
     zoxide = {
       enable = true;

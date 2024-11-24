@@ -4,11 +4,9 @@
   ...
 }: {
   imports = [
-    inputs.home-manager.darwinModules.home-manager
-    ../../modules/darwin
+    inputs.home-manager.nixosModules.home-manager
+    ../../modules/nixos
   ];
-
-  nixpkgs.hostPlatform = "aarch64-darwin";
 
   home-manager = {
     extraSpecialArgs = {inherit inputs outputs;};
@@ -17,5 +15,8 @@
     users.smh = import ../../home/smh;
   };
 
-  networking.hostName = "nostalgia";
+  time.timeZone = "Asia/Dubai";
+  services.openssh.enable = true;
+
+  networking.hostName = "nixos-lxc";
 }

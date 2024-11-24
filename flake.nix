@@ -23,7 +23,6 @@
     systems = ["x86_64-linux" "aarch64-darwin"];
     forAllSystems = nixpkgs.lib.genAttrs systems;
   in {
-    # Enables `nix fmt` at root of repo to format all nix files
     formatter = forAllSystems (system: nixpkgs.legacyPackages.${system}.alejandra);
 
     darwinConfigurations = {
@@ -35,5 +34,15 @@
         ];
       };
     };
+
+    nixosConfigurations = {
+        nixos-lxc = nixpkgs.lib.nixosSystem {
+          system = "x86_64-linux";
+          specialArgs = {inherit self inputs;};
+          modules = [
+            ./machines/nixos-lxc
+          ];
+        };
+      };
   };
 }
