@@ -1,6 +1,7 @@
 {
   inputs,
   outputs,
+  modulesPath,
   ...
 }: {
   imports = [
