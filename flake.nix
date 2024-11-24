@@ -56,6 +56,7 @@
     packages.x86_64-linux.chasm-city = nixos-generators.nixosGenerate {
       system = "x86_64-linux";
       format = "proxmox-lxc";
+      specialArgs = {inherit self inputs;};
       modules = [
         ./machines/chasm-city
       ];
