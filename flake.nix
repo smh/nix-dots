@@ -44,21 +44,21 @@
     };
 
     nixosConfigurations = {
-        nixos-lxc = nixpkgs.lib.nixosSystem {
+        chasm-city = nixpkgs.lib.nixosSystem {
           system = "x86_64-linux";
-          specialArgs = {inherit self inputs modulesPath;};
+          specialArgs = {inherit self inputs;};
           modules = [
-            ./machines/nixos-lxc
+            ./machines/chasm-city
           ];
         };
       };
 
     # Add Proxmox LXC image generation
-    packages.x86_64-linux.nixos-lxc = nixos-generators.nixosGenerate {
+    packages.x86_64-linux.chasm-city = nixos-generators.nixosGenerate {
       system = "x86_64-linux";
       format = "proxmox-lxc";
       modules = [
-        ./machines/nixos-lxc
+        ./machines/chasm-city
       ];
     };
   };

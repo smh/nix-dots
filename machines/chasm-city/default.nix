@@ -4,7 +4,7 @@
   ...
 }: {
   imports = [
-    "${modulesPath}/virtualisation/lxc-container.nix"
+    <nixpkgs/nixos/modules/virtualisation/lxc-container.nix>
     inputs.home-manager.nixosModules.home-manager
     ./hardware.nix
     ../../modules/nixos
@@ -20,5 +20,5 @@
   time.timeZone = "Asia/Dubai";
   services.openssh.enable = true;
 
-  networking.hostName = "nixos-lxc";
+  networking.hostName = "chasm-city";
 }
