@@ -1,5 +1,9 @@
 { inputs, outputs, ... }: {
 
+  # boot.isContainer = true;
+  # boot.loader.grub.enable = false;
+  # hardware.enableAllFirmware = false;
+
   networking = {
     dhcpcd.enable = false;
     useDHCP = false;
@@ -17,4 +21,10 @@
       linkConfig.RequiredForOnline = "routable";
     };
   };
+
+  # systemd.suppressedSystemUnits = [
+  #   "dev-mqueue.mount"
+  #   "sys-kernel-debug.mount"
+  #   "sys-fs-fuse-connections.mount"
+  # ];
 }

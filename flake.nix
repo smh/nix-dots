@@ -38,11 +38,20 @@
     nixosConfigurations = {
         nixos-lxc = nixpkgs.lib.nixosSystem {
           system = "x86_64-linux";
-          specialArgs = {inherit self inputs;};
+          specialArgs = {inherit self inputs modulesPath;};
           modules = [
             ./machines/nixos-lxc
           ];
         };
       };
+
+    # Add Proxmox LXC image generation
+    packages.x86_64-linux.nixos-lxc = nixos-generators.nixosGenerate {
+      system = "x86_64-linux";
+      format = "proxmox-lxc";
+      modules = [
+        ./machines/nixos-lxc
+      ];
+    };
   };
 }
