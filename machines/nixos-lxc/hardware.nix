@@ -12,7 +12,7 @@
       matchConfig.Name = "eth0";
       networkConfig = {
         DHCP = "ipv4";
-        IPv5AcceptRA = true;
+        IPv6AcceptRA = true;
       };
       linkConfig.RequiredForOnline = "routable";
     };
