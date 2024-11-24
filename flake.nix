@@ -18,6 +18,7 @@
     self,
     nixpkgs,
     nix-darwin,
+    modulesPath,
     ...
   }: let
     systems = ["x86_64-linux" "aarch64-darwin"];
