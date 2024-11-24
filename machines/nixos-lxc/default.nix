@@ -5,7 +5,15 @@
 }: {
   imports = [
     inputs.home-manager.nixosModules.home-manager
+    ./hardware.nix
     ../../modules/nixos
+  ];
+
+  boot.isContainer = true;
+  systemd.suppressedSystemUnits = [
+    "dev-mqueue.mount"
+    "sys-kernel-debug.mount"
+    "sys-fs-fuse-connections.mount"
   ];
 
   home-manager = {
