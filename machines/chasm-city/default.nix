@@ -1,12 +1,9 @@
 {
   inputs,
   outputs,
-  modulesPath,
   ...
 }: {
   imports = [
-    # <nixpkgs/nixos/modules/virtualisation/lxc-container.nix>
-    # "${modulesPath}/virtualisation/lxc-container.nix"
     inputs.home-manager.nixosModules.home-manager
     ./hardware.nix
     ../../modules/nixos
