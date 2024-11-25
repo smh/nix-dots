@@ -48,7 +48,7 @@
   # Enable mDNS for `hostname.local` addresses
   services.avahi = {
     enable = true;
-    nssmdns = true;
+    nssmdns4 = true;
     publish = {
       enable = true;
       addresses = true;
@@ -70,6 +70,7 @@
     # uid = 501;
     shell = pkgs.fish;
     home = "/home/smh";
+    password = "rema1000";
     isNormalUser = true;
     extraGroups = [ "wheel" "networkmanager" ];
     openssh.authorizedKeys.keys = [

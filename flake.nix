@@ -38,6 +38,7 @@
         specialArgs = {inherit self inputs;};
         modules = [
           ./machines/nostalgia
+          "${modulesPath}/virtualisation/lxc-container.nix"
         ];
       };
     };
