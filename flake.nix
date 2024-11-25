@@ -39,20 +39,20 @@
         specialArgs = {inherit self inputs;};
         modules = [
           ./machines/nostalgia
-          "${modulesPath}/virtualisation/lxc-container.nix"
         ];
       };
     };
 
     nixosConfigurations = {
-        chasm-city = nixpkgs.lib.nixosSystem {
-          system = "x86_64-linux";
-          specialArgs = {inherit self inputs;};
-          modules = [
-            ./machines/chasm-city
-          ];
-        };
+      chasm-city = nixpkgs.lib.nixosSystem {
+        system = "x86_64-linux";
+        specialArgs = {inherit self inputs;};
+        modules = [
+          ./machines/chasm-city
+          "${modulesPath}/virtualisation/lxc-container.nix"
+        ];
       };
+    };
 
     # Add Proxmox LXC image generation
     packages.x86_64-linux.chasm-city = nixos-generators.nixosGenerate {
