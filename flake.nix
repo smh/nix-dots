@@ -25,7 +25,6 @@
     nixpkgs,
     nix-darwin,
     nixos-generators,
-    modulesPath,
     ...
   }: let
     systems = ["x86_64-linux" "aarch64-darwin"];
@@ -49,7 +48,7 @@
         specialArgs = {inherit self inputs;};
         modules = [
           ./machines/chasm-city
-          "${modulesPath}/virtualisation/lxc-container.nix"
+          "${nixpkgs}/nixos/modules/virtualisation/lxc-container.nix"
         ];
       };
     };
