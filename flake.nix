@@ -48,7 +48,7 @@
         specialArgs = {inherit self inputs;};
         modules = [
           ./machines/chasm-city
-          "${nixpkgs}/nixos/modules/virtualisation/lxc-container.nix"
+          # "${nixpkgs}/nixos/modules/virtualisation/lxc-container.nix"
         ];
       };
     };
