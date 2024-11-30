@@ -13,9 +13,9 @@
     hostPlatform = "aarch64-darwin";
     config.allowUnfree = true;
 
-    # overlays = [
-    #   (import ../../overlays).aider-chat
-    # ];
+    overlays = [
+      (import ../../overlays)
+    ];
   };
 
   home-manager = {
