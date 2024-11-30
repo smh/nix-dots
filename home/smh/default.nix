@@ -3,6 +3,11 @@
   pkgs,
   ...
 }: {
+  imports = [
+    ./modules/fonts
+    ./programs/wezterm
+  ];
+
   home = {
     # This value determines the Home Manager release that your
     # configuration is compatible with. This helps avoid breakage
@@ -15,7 +20,9 @@
     stateVersion = "24.05";
 
     packages = with pkgs; [
+      # aider-chat
       direnv
+      tree
       zoxide
     ];
   };
@@ -47,9 +54,9 @@
       enable = true;
       enableFishIntegration = true;
     };
-    wezterm = {
-      enable = true;
-    };
+    # wezterm = {
+    #   enable = true;
+    # };
     zoxide = {
       enable = true;
       enableFishIntegration = true;
