@@ -20,7 +20,7 @@
     stateVersion = "24.05";
 
     packages = with pkgs; [
-      # aider-chat
+      aider-chat
       direnv
       tree
       zoxide
