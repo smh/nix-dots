@@ -53,14 +53,24 @@
       };
     };
 
-    # Add Proxmox LXC image generation
-    packages.x86_64-linux.chasm-city = nixos-generators.nixosGenerate {
-      system = "x86_64-linux";
-      format = "proxmox-lxc";
+    # Add VmWare image generation
+    packages.aarch64-linux.chasm-city = nixos-generators.nixosGenerate {
+      system = "aarch64-linux";
+      format = "vmware";
       specialArgs = {inherit self inputs;};
       modules = [
         ./machines/chasm-city
       ];
     };
+
+    # # Add Proxmox LXC image generation
+    # packages.x86_64-linux.chasm-city = nixos-generators.nixosGenerate {
+    #   system = "x86_64-linux";
+    #   format = "proxmox-lxc";
+    #   specialArgs = {inherit self inputs;};
+    #   modules = [
+    #     ./machines/chasm-city
+    #   ];
+    # };
   };
 }
