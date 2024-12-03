@@ -1,6 +1,6 @@
 final: prev: 
   prev.aider-chat.overrideAttrs (oldAttrs: {
-    version = "0.65.0";
+    version = "0.65.1";
     src = prev.fetchFromGitHub {
       owner = "paul-gauthier";
       repo = "aider";
