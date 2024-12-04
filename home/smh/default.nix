@@ -4,7 +4,7 @@
   ...
 }: {
   imports = [
-    ./modules/fonts
+    # ./modules/fonts
     ./programs/wezterm
   ];
 
@@ -24,6 +24,7 @@
       direnv
       tree
       zoxide
+      nerdfonts.firacode
     ];
   };
 
