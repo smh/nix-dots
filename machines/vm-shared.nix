@@ -41,7 +41,7 @@ in {
   boot.loader.systemd-boot.consoleMode = "0";
 
   # Define your hostname.
-  networking.hostName = "dev";
+  # networking.hostName = "dev";
 
   # Set your time zone.
   time.timeZone = "Asia/Dubai";
