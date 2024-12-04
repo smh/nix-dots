@@ -7,7 +7,7 @@
     inputs.home-manager.nixosModules.home-manager
     ./hardware.nix
     ../../modules/nixos
-    ./vm-shared.nix
+    ../vm-shared.nix
   ];
 
   home-manager = {
