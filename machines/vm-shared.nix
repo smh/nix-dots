@@ -21,8 +21,8 @@ in {
     # this, use your own, or toss it. Its typically safe to use a binary cache
     # since the data inside is checksummed.
     settings = {
-      substituters = ["https://smh-nixos-config.cachix.org"];
-      trusted-public-keys = ["smh-nixos-config.cachix.org-1:bjEbXJyLrL1HZZHBbO4QALnI5faYZppzkU4D2s0G8RQ="];
+      # substituters = ["https://smh-nixos-config.cachix.org"];
+      # trusted-public-keys = ["smh-nixos-config.cachix.org-1:bjEbXJyLrL1HZZHBbO4QALnI5faYZppzkU4D2s0G8RQ="];
       trusted-users = [ "root" "@wheel" ];
     };
   };
@@ -125,7 +125,7 @@ in {
   # List packages installed in system profile. To search, run:
   # $ nix search wget
   environment.systemPackages = with pkgs; [
-    cachix
+    # cachix
     gnumake
     killall
     niv
