@@ -24,7 +24,7 @@
       direnv
       tree
       zoxide
-      nerdfonts.firacode
+      # nerdfonts.firacode
     ];
   };
 
