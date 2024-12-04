@@ -84,7 +84,7 @@
     settings = {
       AllowUsers = null; # everyone
       PasswordAuthentication = true; # this is just a sandbox
-      PermitRootLogin = "yes";
+      PermitRootLogin = "no";
     };
   };
 }
