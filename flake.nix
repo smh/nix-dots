@@ -44,7 +44,7 @@
 
     nixosConfigurations = {
       chasm-city = nixpkgs.lib.nixosSystem {
-        system = "x86_64-linux";
+        system = "aarch64-linux";
         specialArgs = {inherit self inputs;};
         modules = [
           ./machines/chasm-city
