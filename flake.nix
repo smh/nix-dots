@@ -48,6 +48,13 @@
         specialArgs = {inherit self inputs;};
         modules = [
           ./machines/chasm-city
+          "${nixpkgs}/nixos/modules/virtualisation/vmware-guest.nix"
+          {
+            # Add VMware specific configuration
+            virtualisation.vmware.guest.enable = true;
+            # Set disk size
+            disk.size = "153600M";
+          }
           # "${nixpkgs}/nixos/modules/virtualisation/lxc-container.nix"
         ];
       };
