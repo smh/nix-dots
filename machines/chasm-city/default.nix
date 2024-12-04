@@ -8,6 +8,7 @@
     ./hardware.nix
     ../../modules/nixos
     ../vm-shared.nix
+    ./homelab.nix
   ];
 
   home-manager = {

@@ -23,6 +23,7 @@
     lazydocker
     lazygit
     neovim
+    nixos-rebuild
     ripgrep
     starship
     tig
