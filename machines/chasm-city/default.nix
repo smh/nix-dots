@@ -6,9 +6,9 @@
   imports = [
     inputs.home-manager.nixosModules.home-manager
     ./hardware.nix
-    ../../modules/nixos
     ../vm-shared.nix
-    ./homelab.nix
+    ../../modules/nixos
+    ../../modules/homelab
   ];
 
   home-manager = {
