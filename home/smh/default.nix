@@ -22,6 +22,9 @@
     packages = with pkgs; [
       # aider-chat
       direnv
+      gh
+      hub
+
       tree
       zoxide
       # nerdfonts.firacode
@@ -46,6 +49,10 @@
           src = pkgs.fishPlugins.fzf-fish.src;
         }
       ];
+    };
+    gh = {
+      enable = true;
+      gitCredentialHelper.enable = true;
     };
     neovim = {
       enable = true;
