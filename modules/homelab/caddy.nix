@@ -37,12 +37,12 @@ in {
   };
 
 
-  systemd.services.caddy.serviceConfig = {
-    # SupplementaryGroups = [ "certbot" ]; handled by certbot.nix
-    # AssertPathExists = [
-    #   "${certDir}/fullchain.pem"
-    #   "${certDir}/privkey.pem"
-    # ];
+  systemd.services.caddy = {
+    wantedBy = [ "multi-user.target" ];
+    serviceConfig = {
+      SupplementaryGroups = [ "certbot" ];
+      ReadOnlyPaths = [ certDir ];
+    };
     unitConfig = {
       ConditionPathExists = [
         "${certDir}/fullchain.pem"
@@ -50,7 +50,29 @@ in {
       ];
     };
   };
-  # systemd.services.caddy.serviceConfig.SupplementaryGroups = [ "certbot" ];
+
+  # watch for cert changes
+  systemd.paths.caddy-cert-reload = {
+    wantedBy = [ "multi-user.target" ];
+    pathConfig = {
+      PathChanged = "${certDir}/privkey.pem";
+    };
+  };
+
+  systemd.services.caddy-cert-reload = {
+    serviceConfig = {
+      Type = "oneshot";
+      ExecStart = "${pkgs.systemd}/bin/systemctl restart caddy.service";
+      #      ExecStart = pkgs.writeShellScript "caddy-cert-reload" ''
+      #        if systemctl is-active --quiet caddy.service; then
+      #          systemctl reload caddy.service
+      # else
+      #          systemctl restart caddy.service
+      # fi
+      #      '';
+      User = "root";  # Needs root to reload systemd services
+    };
+  };
 
   networking.firewall.allowedTCPPorts = [ 80 443 ];
 }

@@ -14,12 +14,6 @@
   };
   users.groups.certbot = {};
 
-  # Ensure certificate directory exists with correct permissions
-  systemd.tmpfiles.rules = [
-    "z /var/lib/acme 0750 certbot certbot - -"
-    "d /var/lib/acme/certs 0750 certbot certbot - -"
-  ];
-
   # Create certificate extraction service
   systemd.services.cert-extract = {
     description = "Extract renewed certificates";
@@ -32,11 +26,22 @@
       WorkingDirectory = "/var/lib/acme";
       ExecStart = pkgs.writeShellScript "extract-certs" ''
         if [ -f certs.tar.gz ]; then
+	  echo "mkdir -p certs"
+	  mkdir -p certs
+	  id
+	  ls -la certs
+	  echo "chmod 750 . certs"
+	  chmod 750 . certs
+	  ls -la certs
+	  chown certbot:certbot certs
+	  echo "extract and chmod/chown"
           tar xzf certs.tar.gz -C certs/
-	  chmod 640 certs/*
-	  chown certbot:certbot certs/*
-	  # Notify Caddy to reload
-          systemctl reload caddy.service
+	  ls -la certs
+	  echo "chmod 750 . certs (again)"
+	  chmod 750 . certs
+	  chmod -R 640 certs/*
+	  chown -R certbot:certbot certs/*
+	  ls -la certs
         fi
       '';
     };
@@ -69,17 +74,17 @@
   # };
 
   # Polkit rule to allow certbot to reload caddy
-  security.polkit.extraConfig = ''
-    polkit.addRule(function(action, subject) {
-      if (action.id == "org.freedesktop.systemd1.manage-units" &&
-          action.lookup("unit") == "caddy.service" &&
-          action.lookup("verb") == "reload" &&
-          subject.user == "certbot") {
-          return polkit.Result.YES;
-      }
-    });
-  '';
+  # security.polkit.extraConfig = ''
+  #   polkit.addRule(function(action, subject) {
+  #     if (action.id == "org.freedesktop.systemd1.manage-units" &&
+  #         action.lookup("unit") == "caddy.service" &&
+  #         action.lookup("verb") == "reload" &&
+  #         subject.user == "certbot") {
+  #         return polkit.Result.YES;
+  #     }
+  #   });
+  # '';
 
   # Grant Caddy access to certificates
-  users.users.caddy.extraGroups = [ "certbot" ];
+  # users.users.caddy.extraGroups = [ "certbot" ];
 }
