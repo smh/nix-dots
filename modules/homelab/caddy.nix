@@ -1,7 +1,7 @@
 { config, lib, pkgs, ... }:
 
 let
-  domain = "hl.hustad.dev";
+  domain = "hustad.dev";
   certDir = "/var/lib/acme/certs";
   mkVirtualHost = port: extraHeaders: {
     extraConfig = ''
@@ -52,25 +52,24 @@ in {
   };
 
   # watch for cert changes
-  systemd.paths.caddy-cert-reload = {
-    wantedBy = [ "multi-user.target" ];
-    pathConfig = {
-      PathChanged = "${certDir}/privkey.pem";
-    };
-  };
-
   systemd.services.caddy-cert-reload = {
     serviceConfig = {
       Type = "oneshot";
       ExecStart = "${pkgs.systemd}/bin/systemctl restart caddy.service";
-      #      ExecStart = pkgs.writeShellScript "caddy-cert-reload" ''
-      #        if systemctl is-active --quiet caddy.service; then
-      #          systemctl reload caddy.service
-      # else
-      #          systemctl restart caddy.service
-      # fi
-      #      '';
+      # ExecStart = pkgs.writeShellScript "caddy-cert-reload" ''
+      #   if systemctl is-active --quiet caddy.service; then
+      #     systemctl reload caddy.service
+      #   else
+      #     systemctl restart caddy.service
+      #   fi
+      # '';
       User = "root";  # Needs root to reload systemd services
+    };
+  };
+  systemd.paths.caddy-cert-reload = {
+    wantedBy = [ "multi-user.target" ];
+    pathConfig = {
+      PathChanged = "${certDir}/privkey.pem";
     };
   };
 
