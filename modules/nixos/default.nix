@@ -63,7 +63,12 @@
   # The platform the configuration will be used on.
   # nixpkgs.hostPlatform = "aarch64-darwin";
 
-  programs.fish.enable = true;
+  programs = {
+    fish.enable = true;
+    command-not-found.enable = false; # incompatible with/replaced by nix-index
+    nix-index.enable = true;
+  };
+
   environment.shells = [pkgs.fish];
   # users.knownUsers = ["smh"];
   users.users.smh = {
