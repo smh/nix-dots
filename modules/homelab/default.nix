@@ -5,6 +5,7 @@ let
 in {
   imports = [
     ./caddy.nix
+    ./certbot.nix
   ];
 
   # System packages needed for services
