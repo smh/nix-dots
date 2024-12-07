@@ -6,6 +6,7 @@ in {
   imports = [
     ./caddy.nix
     ./certbot.nix
+    ./recyclarr.nix
   ];
 
   # System packages needed for services
