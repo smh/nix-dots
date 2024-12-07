@@ -27,7 +27,7 @@ in {
         "soft"            # Return errors rather than hang
         "timeo=15"        # Timeout after 15 seconds
         "retrans=2"       # Number of retries before failure
-        "rw"             # Mount read-write
+        "rw"              # Mount read-write
         "x-systemd.automount"  # Automount on access
         "x-systemd.idle-timeout=600"  # Unmount after 10 minutes of inactivity
       ];
@@ -39,6 +39,7 @@ in {
     bazarr = {
       enable = true;
       openFirewall = true;
+      group = "media";
     };
 
     jellyseerr = {
@@ -49,6 +50,7 @@ in {
     lidarr = {
       enable = true;
       openFirewall = true;
+      group = "media";
       dataDir = "/var/lib/lidarr";
     };
 
@@ -61,6 +63,7 @@ in {
     plex = {
       enable = true;
       openFirewall = true;
+      group = "media";
       dataDir = "/var/lib/plex";
     };
 
@@ -72,24 +75,53 @@ in {
     radarr = {
       enable = true;
       openFirewall = true;
+      group = "media";
       dataDir = "/var/lib/radarr";
     };
 
     readarr = {
       enable = true;
       openFirewall = true;
+      group = "media";
       dataDir = "/var/lib/readarr";
     };
 
     sabnzbd = {
       enable = true;
       openFirewall = true;
+      group = "media";
+      # configFile = "/var/lib/sabnzbd/sabnzbd.ini";
+      # extraOptions = [
+      #   "--host 0.0.0.0"  # Listen on all interfaces instead of just localhost
+      # ];
     };
 
     sonarr = {
       enable = true;
       openFirewall = true;
+      group = "media";
       dataDir = "/var/lib/sonarr";
+    };
+  };
+
+  systemd.services.radarr = {
+    serviceConfig = {
+      # Group = "media";
+      UMask = "0002";
+    };
+  };
+
+  systemd.services.sabnzbd = {
+    serviceConfig = {
+      # Group = "media";
+      UMask = "0002";
+    };
+  };
+
+  systemd.services.sonarr = {
+    serviceConfig = {
+      Group = "media";
+      UMask = "0002";
     };
   };
 
@@ -98,15 +130,7 @@ in {
     gid = 2000;
   };
 
-  users.users = {
-    bazarr.extraGroups = [ "media" ];
-    lidarr.extraGroups = [ "media" ];
-    plex.extraGroups = [ "media" ];
-    radarr.extraGroups = [ "media" ];
-    readarr.extraGroups = [ "media" ];
-    sabnzbd.extraGroups = [ "media" ];
-    sonarr.extraGroups = [ "media" ];
-  };
+  users.users.smh.extraGroups = [ "media" ];
 
   # Ensure media directory has correct permissions
   systemd.tmpfiles.rules = [
