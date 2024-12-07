@@ -22,7 +22,7 @@
     extraSpecialArgs = {inherit inputs outputs;};
     useGlobalPkgs = true;
     useUserPackages = true;
-    backupFileExtension = ".nix-backup";
+    backupFileExtension = "nix-backup";
     users.smh = import ../../home/smh;
   };
 
