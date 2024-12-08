@@ -6,6 +6,7 @@
   imports = [
     # ./modules/fonts
     ./programs/git
+    ./programs/tmux
     ./programs/wezterm
   ];
 
