@@ -15,7 +15,7 @@
     extraSpecialArgs = {inherit inputs outputs;};
     useGlobalPkgs = true;
     useUserPackages = true;
-    users.smh = import ../../home/smh;
+    users.smh = import ../../home/smh { inherit inputs };
   };
 
   time.timeZone = "Asia/Dubai";

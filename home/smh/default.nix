@@ -1,12 +1,13 @@
 {
-  lib,
   pkgs,
+  lib,
+  # inputs,
   ...
 }: {
   imports = [
     # ./modules/fonts
     ./programs/git
-    ./programs/tmux
+    ./programs/tmux # { inherit inputs; }
     ./programs/wezterm
   ];
 

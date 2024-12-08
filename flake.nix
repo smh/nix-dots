@@ -18,6 +18,24 @@
       url = "github:nix-community/nixos-generators";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+
+
+    tmux-catppuccin = {
+      url = "github:catppuccin/tmux/v2.1.1";
+      flake = false;
+    };
+    tmux-battery = {
+      url = "github:tmux-plugins/tmux-battery/48fae59ba4503cf345d25e4e66d79685aa3ceb75";
+      flake = false;
+    };
+    tmux-nerd-font-window-name = {
+      url = "github:joshmedeski/tmux-nerd-font-window-name/e0f3946227e5e7b5a94a24f973c842fa5a385e7f";
+      flake = false;
+    };
+    vim-tmux-navigator = {
+      url = "github:christoomey/vim-tmux-navigator/2d8bc8176af90935fb918526b0fde73d6ceba0df";
+      flake = false;
+    };
   };
 
   outputs = inputs @ {
