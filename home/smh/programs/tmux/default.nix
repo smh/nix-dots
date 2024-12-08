@@ -1,10 +1,6 @@
-{ config, lib, pkgs, ... }:
+{ config, lib, pkgs, inputs, ... }:
 
-let
-  pluginOverlay = import ./tmux-plugins;
-  pkgsWithPlugins = pkgs.extend pluginOverlay;
-
-in {
+{
   programs.tmux = {
     enable = true;
 
@@ -19,10 +15,66 @@ in {
     sensibleOnTop = false; # disable sensible plugin - outdated and not updated for 3+ years, have extracted the little I need
     terminal = "tmux-256color";
 
-    # Plugin configuration
-    plugins = with pkgsWithPlugins.tmuxPlugins; [
+    plugins = with pkgs.tmuxPlugins; [
+      prefix-highlight
+      resurrect
+      yank
       {
-        plugin = catppuccin;
+        plugin = fzf-tmux-url;
+        extraConfig = "set -g @fzf-url-fzf-options '-w 50% -h 50% --multi -0 --no-preview --no-border'";
+      }
+      {
+        plugin = online-status;
+        extraConfig = ''
+          set -g @online_icon "ok"
+          set -g @offline_icon "nok"
+        '';
+      }
+      {
+        plugin = tmux-thumbs;
+        extraConfig = ''
+          set -g @thumbs-key F
+        '';
+      }
+      {
+        plugin = mkTmuxPlugin {
+          pluginName = "tmux-battery";
+          src = inputs.tmux-battery;
+          rtpFilePath = "battery.tmux";
+          version = "git";
+        };
+      }
+      {
+        plugin = mkTmuxPlugin {
+          pluginName = "tmux-nerd-font-window-name";
+          src = inputs.tmux-nerd-font-window-name;
+          rtpFilePath = "tmux-nerd-font-window-name.tmux";
+          version = "git";
+        };
+      }
+      {
+        plugin = mkTmuxPlugin {
+          pluginName = "vim-tmux-navigator";
+          src = inputs.vim-tmux-navigator;
+          rtpFilePath = "vim-tmux-navigator.tmux";
+          version = "git";
+        };
+        extraConfig = ''
+          set -g @vim_navigator_mapping_left "C-h"
+          set -g @vim_navigator_mapping_right "C-l"
+          set -g @vim_navigator_mapping_up "C-k"
+          set -g @vim_navigator_mapping_down "C-j"
+          set -g @vim_navigator_mapping_prev ""
+          set -g @vim_navigator_prefix_mapping_clear_screen ""
+        '';
+      }
+      {
+        plugin = mkTmuxPlugin {
+          pluginName = "tmux-catppuccin";
+          src = inputs.tmux-catppuccin;
+          rtpFilePath = "catppuccin.tmux";
+          version = "git";
+        };
         extraConfig = ''
           # Configure Catppuccin
           set -g @catppuccin_flavor "macchiato"
@@ -54,36 +106,6 @@ in {
           set -ga status-right "#[bg=#{@thm_bg}]#{?#{==:#{online_status},ok},#[fg=#{@thm_mauve}] 󰖩 on ,#[fg=#{@thm_red},bold]#[reverse] 󰖪 off }"
           set -ga status-right "#[bg=#{@thm_bg},fg=#{@thm_overlay_0}, none]│"
           set -ga status-right "#[bg=#{@thm_bg},fg=#{@thm_blue}] 󰭦 %Y-%m-%d 󰅐 %H:%M "
-        '';
-      }
-      {
-        plugin = online-status;
-        extraConfig = ''
-          set -g @online_icon "ok"
-          set -g @offline_icon "nok"
-        '';
-      }
-      battery
-      prefix-highlight
-      resurrect
-      yank
-      {
-        plugin = vim-tmux-navigator;
-        extraConfig = ''
-          set -g @vim_navigator_mapping_left "C-h"
-          set -g @vim_navigator_mapping_right "C-l"
-          set -g @vim_navigator_mapping_up "C-k"
-          set -g @vim_navigator_mapping_down "C-j"
-          set -g @vim_navigator_mapping_prev ""
-          set -g @vim_navigator_prefix_mapping_clear_screen ""
-        '';
-      }
-      fzf-tmux-url
-      # joshmedeski/tmux-nerd-font-window-name
-      {
-        plugin = tmux-thumbs;
-        extraConfig = ''
-          set -g @thumbs-key F
         '';
       }
     ];

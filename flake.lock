@@ -97,7 +97,79 @@
         "home-manager": "home-manager",
         "nix-darwin": "nix-darwin",
         "nixos-generators": "nixos-generators",
-        "nixpkgs": "nixpkgs"
+        "nixpkgs": "nixpkgs",
+        "tmux-battery": "tmux-battery",
+        "tmux-catppuccin": "tmux-catppuccin",
+        "tmux-nerd-font-window-name": "tmux-nerd-font-window-name",
+        "vim-tmux-navigator": "vim-tmux-navigator"
+      }
+    },
+    "tmux-battery": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1701419842,
+        "narHash": "sha256-yKMTuRiNnGC3tAbZeWzMEudzhBSJhji8sZh96rFxpb8=",
+        "owner": "tmux-plugins",
+        "repo": "tmux-battery",
+        "rev": "48fae59ba4503cf345d25e4e66d79685aa3ceb75",
+        "type": "github"
+      },
+      "original": {
+        "owner": "tmux-plugins",
+        "repo": "tmux-battery",
+        "rev": "48fae59ba4503cf345d25e4e66d79685aa3ceb75",
+        "type": "github"
+      }
+    },
+    "tmux-catppuccin": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1731882838,
+        "narHash": "sha256-9+SpgO2Co38I0XnEbRd7TSYamWZNjcVPw6RWJIHM+4c=",
+        "owner": "catppuccin",
+        "repo": "tmux",
+        "rev": "179572333b0473020e45f34fd7c1fd658b2831f4",
+        "type": "github"
+      },
+      "original": {
+        "owner": "catppuccin",
+        "ref": "v2.1.1",
+        "repo": "tmux",
+        "type": "github"
+      }
+    },
+    "tmux-nerd-font-window-name": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1731520880,
+        "narHash": "sha256-Iv5XmJZzT20c1dkTaHZkHcxiAKEnzuNy/P22grKJrhg=",
+        "owner": "joshmedeski",
+        "repo": "tmux-nerd-font-window-name",
+        "rev": "e0f3946227e5e7b5a94a24f973c842fa5a385e7f",
+        "type": "github"
+      },
+      "original": {
+        "owner": "joshmedeski",
+        "repo": "tmux-nerd-font-window-name",
+        "rev": "e0f3946227e5e7b5a94a24f973c842fa5a385e7f",
+        "type": "github"
+      }
+    },
+    "vim-tmux-navigator": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1730652772,
+        "narHash": "sha256-2ObHLgdrv7UftZbaICPEpftEZMY0sTqyPgK1x9rQS9Q=",
+        "owner": "christoomey",
+        "repo": "vim-tmux-navigator",
+        "rev": "2d8bc8176af90935fb918526b0fde73d6ceba0df",
+        "type": "github"
+      },
+      "original": {
+        "owner": "christoomey",
+        "repo": "vim-tmux-navigator",
+        "rev": "2d8bc8176af90935fb918526b0fde73d6ceba0df",
+        "type": "github"
       }
     }
   },
