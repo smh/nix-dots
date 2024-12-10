@@ -7,6 +7,7 @@ in {
     ./caddy.nix
     ./certbot.nix
     ./recyclarr.nix
+    ./jellyseerr/jellyseer.nix
   ];
 
   # System packages needed for services
@@ -46,6 +47,7 @@ in {
     jellyseerr = {
       enable = true;
       openFirewall = true;
+      package = (pkgs.callPackage (import jellyseerr) {});
     };
 
     lidarr = {
