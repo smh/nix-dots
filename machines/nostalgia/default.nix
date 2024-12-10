@@ -6,7 +6,8 @@
   imports = [
     inputs.home-manager.darwinModules.home-manager
     ../../modules/darwin
-    # ./homelab.nix
+    ./homebrew.nix
+    ./plex-media-server.nix
   ];
 
   nixpkgs = {

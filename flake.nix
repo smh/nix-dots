@@ -53,10 +53,8 @@
     darwinConfigurations = {
       nostalgia = nix-darwin.lib.darwinSystem {
         system = "aarch64-darwin";
-        specialArgs = {inherit self inputs;};
-        modules = [
-          ./machines/nostalgia
-        ];
+        specialArgs = { inherit self inputs; };
+        modules = [ ./machines/nostalgia ];
       };
     };
 
