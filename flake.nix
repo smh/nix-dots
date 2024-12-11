@@ -88,7 +88,7 @@
 
     nixosConfigurations = {
       chasm-city-proxmox-lxc = nixpkgs.lib.nixosSystem {
-        system = "aarch64-linux";
+        system = "x86-64-linux";
         specialArgs = {inherit self inputs;};
         modules = [
           ./machines/chasm-city-proxmox-lxc
