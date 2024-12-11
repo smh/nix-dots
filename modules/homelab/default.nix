@@ -44,17 +44,11 @@ in {
   environment.etc."docker-compose/arr-stack.yml" = {
     text = ''
       x-common: &common-config
-        logging:
-          driver: local
-          options:
-            rotate: "daily"
-            max-file: "14"
-            max-size: "10m"
         environment:
           PUID: "2000"
           PGID: "2000"
           TZ: "Asia/Dubai"
-        network-mode: "host"
+        network_mode: "host"
         restart: "unless-stopped"
 
       services:
@@ -158,11 +152,10 @@ in {
       Type = "oneshot";
       RemainAfterExit = true;
       WorkingDirectory = "/etc/docker-compose";
-      ExecStartPre = [
-        "${pkgs.docker}/bin/docker network create media || true"
-      ];
       ExecStart = "${pkgs.docker-compose}/bin/docker-compose -f arr-stack.yml up -d";
       ExecStop = "${pkgs.docker-compose}/bin/docker-compose -f arr-stack.yml down";
+      User = "root";
+      Group = "docker";
     };
   };
 
