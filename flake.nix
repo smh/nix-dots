@@ -74,44 +74,37 @@
           # "${nixpkgs}/nixos/modules/virtualisation/lxc-container.nix"
         ];
       };
-    };
 
-    # Add VmWare image generation
-    packages.aarch64-linux.chasm-city = nixos-generators.nixosGenerate {
-      system = "aarch64-linux";
-      format = "vmware";
-      specialArgs = {inherit self inputs;};
-      modules = [
-        ./machines/chasm-city
-      ];
-    };
-
-    nixosConfigurations = {
       chasm-city-proxmox-lxc = nixpkgs.lib.nixosSystem {
-        system = "x86-64-linux";
+        system = "x86_64-linux";
         specialArgs = {inherit self inputs;};
         modules = [
           ./machines/chasm-city-proxmox-lxc
-          # "${nixpkgs}/nixos/modules/virtualisation/vmware-guest.nix"
-          # {
-          #   # Add VMware specific configuration
-          #   virtualisation.vmware.guest.enable = true;
-          #   # Set disk size
-          #   disk.size = "153600M";
-          # }
-          # "${nixpkgs}/nixos/modules/virtualisation/lxc-container.nix"
         ];
       };
     };
 
-    # Add Proxmox LXC image generation
-    packages.x86_64-linux.chasm-city-lxc = nixos-generators.nixosGenerate {
-      system = "x86_64-linux";
-      format = "proxmox-lxc";
-      specialArgs = {inherit self inputs;};
-      modules = [
-        ./machines/chasm-city-proxmox-lxc
-      ];
+    # Add VmWare image generation
+    packages = {
+      aarch64-linux.chasm-city = nixos-generators.nixosGenerate {
+        system = "aarch64-linux";
+        format = "vmware";
+        specialArgs = {inherit self inputs;};
+        modules = [
+          ./machines/chasm-city
+        ];
+      };
+
+
+      # Add Proxmox LXC image generation
+      x86_64-linux.chasm-city-lxc = nixos-generators.nixosGenerate {
+        system = "x86_64-linux";
+        format = "proxmox-lxc";
+        specialArgs = {inherit self inputs;};
+        modules = [
+          ./machines/chasm-city-proxmox-lxc
+        ];
+      };
     };
   };
 }
