@@ -144,18 +144,44 @@ in {
 
   systemd.services.docker-arr-stack = {
     description = "Docker Compose Stack for *arr Services";
-    after = [ "docker.service" "docker.socket" ];
-    requires = [ "docker.service" ];
+    after = [
+      "docker.service"
+      "docker.socket"
+      "data.mount"
+      "remote-fs.target"
+    ];
+    requires = [
+      "docker.service"
+      "data.mount"
+      "remote-fs.target"
+    ];
     wantedBy = [ "multi-user.target" ];
 
     serviceConfig = {
       Type = "oneshot";
       RemainAfterExit = true;
       WorkingDirectory = "/etc/docker-compose";
-      ExecStart = "${pkgs.docker-compose}/bin/docker-compose -f arr-stack.yml up -d";
-      ExecStop = "${pkgs.docker-compose}/bin/docker-compose -f arr-stack.yml down";
       User = "root";
       Group = "docker";
+      ExecStart = "${pkgs.docker-compose}/bin/docker-compose -f arr-stack.yml up -d";
+      ExecStop = "${pkgs.docker-compose}/bin/docker-compose -f arr-stack.yml down";
+
+      # ExecStartPre = pkgs.writeShellScript "wait-for-nfs" ''
+      #   MAX_ATTEMPTS=6  # 30 seconds with 5s sleep
+      #   attempt=1
+      #
+      #   # echo "Waiting for /data NFS mount..."
+      #   while ! mountpoint -q /data; do
+      #     if [ $attempt -ge $MAX_ATTEMPTS ]; then
+      #       echo "Timeout waiting for /data NFS mount after 30 seconds"
+      #       exit 1
+      #     fi
+      #     echo "Attempt $attempt/$MAX_ATTEMPTS: /data not mounted, waiting 5s..."
+      #     sleep 5
+      #     attempt=$((attempt + 1))
+      #   done
+      #   # echo "/data NFS mount is ready"
+      # '';
     };
   };
 
@@ -168,13 +194,13 @@ in {
       device = "blackhole.lan:/data";
       fsType = "nfs";
       options = [
+        # "_netdev"
         "nofail"
         "soft"
         "timeo=15"
         "retrans=2"
         "rw"
-        "x-systemd.automount"
-        "x-systemd.idle-timeout=600"
+	# "network-online.target"
       ];
     };
   };
