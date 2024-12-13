@@ -194,14 +194,21 @@ in {
       device = "blackhole.lan:/data";
       fsType = "nfs";
       options = [
-        # "_netdev"
+        "_netdev"
         "nofail"
         "soft"
         "timeo=15"
         "retrans=2"
         "rw"
-	# "network-online.target"
+         # "x-systemd.required=network-online.target"
+         # automount doesn't work with lxc containers
+         # "x-systemd.automount"
+         # "x-systemd.idle-timeout=600"
       ];
+      # neededForBoot = false;
+      # wantedBy = [ "multi-user.booot" ];
+      # requires = [ "network-online.target" ];
+      # after = [ "network-online.target" ];
     };
   };
 

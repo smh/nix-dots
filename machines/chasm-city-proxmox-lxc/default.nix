@@ -1,9 +1,11 @@
 {
   inputs,
   outputs,
+  modulesPath,
   ...
 }: {
   imports = [
+    "${modulesPath}/virtualisation/lxc-container.nix"
     inputs.home-manager.nixosModules.home-manager
     ./hardware.nix
     ../../modules/nixos
