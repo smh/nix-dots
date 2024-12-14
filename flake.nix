@@ -60,7 +60,7 @@
 
     nixosConfigurations = {
       chasm-city = nixpkgs.lib.nixosSystem {
-        system = "aarch64-linux";
+        system = "x86_64-linux";
         specialArgs = {inherit self inputs;};
         modules = [
           ./machines/chasm-city
@@ -86,9 +86,9 @@
 
     # Add VmWare image generation
     packages = {
-      aarch64-linux.chasm-city = nixos-generators.nixosGenerate {
-        system = "aarch64-linux";
-        format = "vmware";
+      x86_64-linux.chasm-city = nixos-generators.nixosGenerate {
+        system = "x86_64-linux";
+        format = "proxmox";
         specialArgs = {inherit self inputs;};
         modules = [
           ./machines/chasm-city
