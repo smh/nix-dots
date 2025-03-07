@@ -23,14 +23,16 @@
     stateVersion = "24.05";
 
     packages = with pkgs; [
-      # aider-chat
+      aider-chat
       delta
       direnv
       gh
       git-lfs
+      # ghostty - currently (1.1.2) marked broken on darwin
       hub
 
       tree
+      uv
       zoxide
       # nerdfonts.firacode
     ];
