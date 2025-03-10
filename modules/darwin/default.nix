@@ -18,20 +18,25 @@
     fzf
     git
     git-extras
+    git-lfs
     htop
     jq
     lazydocker
     lazygit
     neovim
     nixos-rebuild
+    nodejs_23
     ripgrep
     starship
     tig
     tmux
+    tree
+    uv
     vim
     wezterm
     wget
     yq
+    zoxide
   ];
 
   # Necessary for using flakes on this system.
