@@ -1,6 +1,7 @@
 {
   pkgs,
   lib,
+  config,
   # inputs,
   ...
 }: {
@@ -32,7 +33,7 @@
     ];
 
     file.".npmrc".text = ''
-      prefix=$HOME/.cache/npm/global
+      prefix=${config.home.homeDirectory}/.cache/npm/global
     '';
 
     sessionVariables = {
