@@ -24,7 +24,6 @@
     stateVersion = "24.05";
 
     packages = with pkgs; [
-      aider-chat
       direnv
       gh
       # ghostty - currently (1.1.2) marked broken on darwin
@@ -52,6 +51,7 @@
       shellAliases = {
         vi = "nvim";
         dc = "docker compose";
+        tm = "task-master";
       };
       plugins = [
         {
