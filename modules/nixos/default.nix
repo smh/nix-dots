@@ -6,30 +6,32 @@
   # List packages installed in system profile. To search by name, run:
   # $ nix-env -qaP | grep wget
   environment.systemPackages = with pkgs; [
-    bat
+    # Core system utilities
     broot
     coreutils
     curl
+    git
+    git-extras
+    vim
+
+    # CLI tools
     delta
     difftastic
     fd
-    fish
-    fzf
-    git
-    git-extras
-    htop
     jq
-    lazydocker
-    lazygit
-    neovim
     ripgrep
-    starship
     tig
     tmux
-    vim
-    wezterm
     wget
     yq
+
+    # Shell integration tools (needed at system level)
+    starship
+    zoxide
+
+    # Tools that need system-level access
+    lazydocker
+    wezterm
   ];
 
   # Auto upgrade nix package and the daemon service.

@@ -24,31 +24,13 @@
     stateVersion = "24.05";
 
     packages = with pkgs; [
-      direnv
-      gh
+      # User-specific tools not in system packages
       glow
-      # ghostty - currently (1.1.2) marked broken on darwin
       hub
+      # ghostty - currently (1.1.2) marked broken on darwin
       # nerdfonts.firacode
-      
-      # Command line essentials
-      bat
-      ripgrep
-      fd
-      fzf
-      jq
-      yq-go
-      htop
-      tree
-      wget
-      
-      # Git tools
-      lazygit
-      tig
-      delta
-      
-      # Development tools
-      nodejs
+
+      # Development tools (keep in user profile)
       yarn
       python3
       ruby
@@ -99,7 +81,7 @@
       enable = true;
       enableFishIntegration = true;
     };
-    
+
     # Additional program configurations
     bat = {
       enable = true;
@@ -107,19 +89,19 @@
         theme = "TwoDark";
       };
     };
-    
+
     fzf = {
       enable = true;
       enableFishIntegration = true;
     };
-    
+
     htop = {
       enable = true;
       settings = {
         show_program_path = false;
       };
     };
-    
+
     lazygit = {
       enable = true;
     };

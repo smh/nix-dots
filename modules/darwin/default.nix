@@ -3,40 +3,42 @@
   self,
   ...
 }: {
-
   # List packages installed in system profile. To search by name, run:
   # $ nix-env -qaP | grep wget
   environment.systemPackages = with pkgs; [
-    bat
+    # Core system utilities
     broot
     coreutils
     curl
-    delta
-    difftastic
-    fd
-    fish
-    fzf
     git
     git-extras
     git-lfs
-    htop
+    vim
+
+    # CLI tools
+    delta
+    difftastic
+    fd
     jq
-    lazydocker
-    lazygit
-    neovim
-    nixos-rebuild
-    nodejs_24
     ripgrep
-    starship
     tig
     tmux
     tree
     uv
-    vim
-    wezterm
     wget
     yq
+
+    # Shell integration tools (needed at system level)
+    starship
     zoxide
+
+    # Development
+    nixos-rebuild
+    nodejs_24
+
+    # Tools that need system-level access
+    lazydocker
+    wezterm
   ];
 
   # Necessary for using flakes on this system.
