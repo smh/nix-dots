@@ -1,3 +1,7 @@
+# CLAUDE.md
+
+This file provides guidance to Claude Code (claude.ai/code) when working with code in this repository.
+
 # Nix-dots Repository Guide
 
 ## Commands
@@ -22,3 +26,12 @@
 - `/home`: User-specific configurations (home-manager)
 - `/modules`: Shared configuration modules
 - `/overlays`: Package customizations and overrides
+
+## Architecture
+This is a multi-platform Nix configuration using flakes:
+- **Darwin support**: macOS systems via nix-darwin (machine: nostalgia)
+- **NixOS support**: Linux systems with VM/container variants (machines: chasm-city, chasm-city-proxmox-lxc)
+- **Home-manager integration**: Platform-agnostic user configurations
+- **Homelab module**: Docker Compose-based media server stack (*arr services) with NFS mounts
+- **Flake inputs**: All dependencies pinned through flake.lock
+- **nixos-generators**: Used for building VM and container images

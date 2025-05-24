@@ -28,4 +28,6 @@
   };
 
   networking.hostName = "nostalgia";
+  
+  system.primaryUser = "smh";
 }
