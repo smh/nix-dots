@@ -30,6 +30,28 @@
       # ghostty - currently (1.1.2) marked broken on darwin
       hub
       # nerdfonts.firacode
+      
+      # Command line essentials
+      bat
+      ripgrep
+      fd
+      fzf
+      jq
+      yq-go
+      htop
+      tree
+      wget
+      
+      # Git tools
+      lazygit
+      tig
+      delta
+      
+      # Development tools
+      nodejs
+      yarn
+      python3
+      ruby
     ];
 
     file.".npmrc".text = ''
@@ -76,6 +98,30 @@
     zoxide = {
       enable = true;
       enableFishIntegration = true;
+    };
+    
+    # Additional program configurations
+    bat = {
+      enable = true;
+      config = {
+        theme = "TwoDark";
+      };
+    };
+    
+    fzf = {
+      enable = true;
+      enableFishIntegration = true;
+    };
+    
+    htop = {
+      enable = true;
+      settings = {
+        show_program_path = false;
+      };
+    };
+    
+    lazygit = {
+      enable = true;
     };
 
     # Let Home Manager install and manage itself.
