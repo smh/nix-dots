@@ -1,12 +1,15 @@
-{ inputs, outputs, ... }: {
-
+{
+  inputs,
+  outputs,
+  ...
+}: {
   boot.isContainer = true;
   boot.loader.grub.enable = false;
 
   networking = {
     useDHCP = false;
-  #   # dhcpcd.enable = false;
-  #   # useNetworkd = true;
+    #   # dhcpcd.enable = false;
+    #   # useNetworkd = true;
     useHostResolvConf = false;
   };
 

@@ -40,11 +40,11 @@
 
   # Necessary for using flakes on this system.
   nix.settings = {
-    experimental-features = [ "nix-command" "flakes" ];
-    trusted-users = [ "root" "smh" "@wheel" ];  # Add any other trusted users
-    trusted-public-keys = [ "local-builder:HT9p32L2PhqcLjmuhpcr/7y+AtUunP4vGQhJT7Zo+0Q=" ];
+    experimental-features = ["nix-command" "flakes"];
+    trusted-users = ["root" "smh" "@wheel"]; # Add any other trusted users
+    trusted-public-keys = ["local-builder:HT9p32L2PhqcLjmuhpcr/7y+AtUunP4vGQhJT7Zo+0Q="];
     accept-flake-config = true;
-    allowed-users = [ "@wheel" ];
+    allowed-users = ["@wheel"];
   };
 
   # Enable mDNS for `hostname.local` addresses
@@ -79,7 +79,7 @@
     home = "/home/smh";
     password = "rema1000";
     isNormalUser = true;
-    extraGroups = [ "wheel" "networkmanager" ];
+    extraGroups = ["wheel" "networkmanager"];
     openssh.authorizedKeys.keys = [
       "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIGDdhFAELwOVPH8ywfeOqgty+vMtepL+vftzh8xIOF3Y smh@Jennifer.svingen"
     ];

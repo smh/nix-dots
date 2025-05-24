@@ -19,7 +19,6 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
-
     tmux-catppuccin = {
       url = "github:catppuccin/tmux/v2.1.1";
       flake = false;
@@ -53,8 +52,8 @@
     darwinConfigurations = {
       nostalgia = nix-darwin.lib.darwinSystem {
         system = "aarch64-darwin";
-        specialArgs = { inherit self inputs; };
-        modules = [ ./machines/nostalgia ];
+        specialArgs = {inherit self inputs;};
+        modules = [./machines/nostalgia];
       };
     };
 
@@ -94,7 +93,6 @@
           ./machines/chasm-city
         ];
       };
-
 
       # Add Proxmox LXC image generation
       x86_64-linux.chasm-city-lxc = nixos-generators.nixosGenerate {

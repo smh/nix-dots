@@ -1,6 +1,9 @@
-{ config, lib, pkgs, ... }:
-
-let
+{
+  config,
+  lib,
+  pkgs,
+  ...
+}: let
   cfg = config.services.homelab;
   mediaDir = "/data/media";
   downloadsDir = "/data/downloads";
@@ -155,7 +158,7 @@ in {
       "data.mount"
       "remote-fs.target"
     ];
-    wantedBy = [ "multi-user.target" ];
+    wantedBy = ["multi-user.target"];
 
     serviceConfig = {
       Type = "oneshot";
@@ -187,7 +190,7 @@ in {
 
   # NFS client support
   services.rpcbind.enable = true;
-  
+
   # NFS mount configuration
   fileSystems = {
     "/data" = {
@@ -200,10 +203,10 @@ in {
         "timeo=15"
         "retrans=2"
         "rw"
-         # "x-systemd.required=network-online.target"
-         # automount doesn't work with lxc containers
-         # "x-systemd.automount"
-         # "x-systemd.idle-timeout=600"
+        # "x-systemd.required=network-online.target"
+        # automount doesn't work with lxc containers
+        # "x-systemd.automount"
+        # "x-systemd.idle-timeout=600"
       ];
       # neededForBoot = false;
       # wantedBy = [ "multi-user.booot" ];
@@ -228,5 +231,5 @@ in {
     gid = 2000;
   };
 
-  users.users.smh.extraGroups = [ "media" "docker" ];
+  users.users.smh.extraGroups = ["media" "docker"];
 }

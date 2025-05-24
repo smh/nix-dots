@@ -1,6 +1,11 @@
-{ config, pkgs, lib, currentSystem, currentSystemName,... }:
-
-let
+{
+  config,
+  pkgs,
+  lib,
+  currentSystem,
+  currentSystemName,
+  ...
+}: let
   # Turn this to true to use gnome instead of i3. This is a bit
   # of a hack, I just flip it on as I need to develop gnome stuff
   # for now.
@@ -23,7 +28,7 @@ in {
     settings = {
       # substituters = ["https://smh-nixos-config.cachix.org"];
       # trusted-public-keys = ["smh-nixos-config.cachix.org-1:bjEbXJyLrL1HZZHBbO4QALnI5faYZppzkU4D2s0G8RQ="];
-      trusted-users = [ "root" "@wheel" ];
+      trusted-users = ["root" "@wheel"];
     };
   };
 
@@ -138,7 +143,7 @@ in {
     # (writeShellScriptBin "xrandr-auto" ''
     #   xrandr --output Virtual-1 --auto
     # '')
-  # ] ++ lib.optionals (currentSystemName == "vm-aarch64") [
+    # ] ++ lib.optionals (currentSystemName == "vm-aarch64") [
     # This is needed for the vmware user tools clipboard to work.
     # You can test if you don't need this by deleting this and seeing
     # if the clipboard sill works.

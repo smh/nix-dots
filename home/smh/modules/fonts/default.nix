@@ -1,7 +1,10 @@
-{ config, lib, pkgs, ... }:
-
 {
+  config,
+  lib,
+  pkgs,
+  ...
+}: {
   home.packages = with pkgs; [
-    (nerd-fonts.override { fonts = [ "FiraCode" ]; })
+    (nerd-fonts.override {fonts = ["FiraCode"];})
   ];
 }

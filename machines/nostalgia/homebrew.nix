@@ -1,4 +1,9 @@
-{ config, lib, pkgs, ... }: {
+{
+  config,
+  lib,
+  pkgs,
+  ...
+}: {
   homebrew = {
     enable = true;
     onActivation = {
@@ -15,7 +20,7 @@
 
     brews = [];
 
-    masApps = {}; 
+    masApps = {};
 
     global = {
       brewfile = true;

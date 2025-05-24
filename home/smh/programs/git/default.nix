@@ -1,11 +1,16 @@
-{ config, lib, pkgs, ... }: {
+{
+  config,
+  lib,
+  pkgs,
+  ...
+}: {
   programs.git = {
     enable = true;
     userName = "Stein Martin Hustad";
     userEmail = "stein@hustad.com";
 
     includes = [
-      { path = "${./catppuccin.gitconfig}"; }
+      {path = "${./catppuccin.gitconfig}";}
     ];
 
     aliases = {

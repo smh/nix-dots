@@ -23,8 +23,6 @@
 
   networking.hostName = "chasm-city";
 
-
-
   # Setup qemu so we can run x86_64 binaries
   boot.binfmt.emulatedSystems = ["x86_64-linux"];
 
@@ -55,5 +53,4 @@
       "defaults"
     ];
   };
-
 }

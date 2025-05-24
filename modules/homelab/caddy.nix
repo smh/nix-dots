@@ -1,6 +1,9 @@
-{ config, lib, pkgs, ... }:
-
-let
+{
+  config,
+  lib,
+  pkgs,
+  ...
+}: let
   domain = "hustad.dev";
   certDir = "/var/lib/acme/certs";
   mkVirtualHost = port: extraHeaders: {
@@ -24,7 +27,7 @@ in {
 
     virtualHosts = {
       "bazarr.${domain}" = mkVirtualHost 6767 "";
-      "hydra.${domain}" = mkVirtualHost 5076 "";  # nzbhydra2
+      "hydra.${domain}" = mkVirtualHost 5076 ""; # nzbhydra2
       "lidarr.${domain}" = mkVirtualHost 8686 "";
       "plex.${domain}" = mkVirtualHost 32400 "header_up X-Forwarded-Proto https"; # Fixed double header_up
       "prowlarr.${domain}" = mkVirtualHost 9696 "";
@@ -36,12 +39,11 @@ in {
     };
   };
 
-
   systemd.services.caddy = {
-    wantedBy = [ "multi-user.target" ];
+    wantedBy = ["multi-user.target"];
     serviceConfig = {
-      SupplementaryGroups = [ "certbot" ];
-      ReadOnlyPaths = [ certDir ];
+      SupplementaryGroups = ["certbot"];
+      ReadOnlyPaths = [certDir];
     };
     unitConfig = {
       ConditionPathExists = [
@@ -63,15 +65,15 @@ in {
       #     systemctl restart caddy.service
       #   fi
       # '';
-      User = "root";  # Needs root to reload systemd services
+      User = "root"; # Needs root to reload systemd services
     };
   };
   systemd.paths.caddy-cert-reload = {
-    wantedBy = [ "multi-user.target" ];
+    wantedBy = ["multi-user.target"];
     pathConfig = {
       PathChanged = "${certDir}/privkey.pem";
     };
   };
 
-  networking.firewall.allowedTCPPorts = [ 80 443 ];
+  networking.firewall.allowedTCPPorts = [80 443];
 }
