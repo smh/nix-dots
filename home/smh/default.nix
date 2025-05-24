@@ -26,6 +26,7 @@
     packages = with pkgs; [
       direnv
       gh
+      glow
       # ghostty - currently (1.1.2) marked broken on darwin
       hub
       # nerdfonts.firacode
