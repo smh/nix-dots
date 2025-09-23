@@ -37,7 +37,6 @@
     nodejs_24
 
     # Tools that need system-level access
-    aerospace
     lazydocker
     wezterm
   ];
