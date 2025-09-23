@@ -41,7 +41,7 @@
     '';
 
     sessionVariables = {
-      PATH = "$HOME/.cache/npm/global/bin:$PATH";
+      PATH = "$HOME/bin:$HOME/.docker/bin:$HOME/.cache/npm/global/bin:$PATH";
     };
   };
 
