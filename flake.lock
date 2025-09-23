@@ -59,11 +59,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1748391243,
-        "narHash": "sha256-7sCuihzsTRZemtbTXaFUoGJUfuQErhKEcL9v7HKIo1k=",
+        "lastModified": 1758593331,
+        "narHash": "sha256-p+904PfmINyekyA/LieX3IYGsiFtExC00v5gSYfJtpM=",
         "owner": "nix-community",
         "repo": "home-manager",
-        "rev": "f5b12be834874f7661db4ced969a621ab2d57971",
+        "rev": "9a2dc0efbc569ce9352a6ffb8e8ec8dbc098e142",
         "type": "github"
       },
       "original": {
@@ -78,14 +78,15 @@
         "flake-compat": "flake-compat",
         "flake-utils": "flake-utils",
         "nixpkgs": "nixpkgs",
-        "systems": "systems"
+        "systems": "systems",
+        "treefmt-nix": "treefmt-nix"
       },
       "locked": {
-        "lastModified": 1742156590,
-        "narHash": "sha256-aTM/2CrNN5utdVEQGsOA+kl4UozgH7VPLBQL5OXtBrg=",
+        "lastModified": 1756057867,
+        "narHash": "sha256-ziR5eQGqRWhW8tf8r0TIplaqNt+HXu1G1X41LUr4IYo=",
         "owner": "hraban",
         "repo": "mac-app-util",
-        "rev": "341ede93f290df7957047682482c298e47291b4d",
+        "rev": "8414fa1e2cb775b17793104a9095aabeeada63ef",
         "type": "github"
       },
       "original": {
@@ -101,11 +102,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1748352827,
-        "narHash": "sha256-sNUUP6qxGkK9hXgJ+p362dtWLgnIWwOCmiq72LAWtYo=",
+        "lastModified": 1758447883,
+        "narHash": "sha256-yGA6MV0E4JSEXqLTb4ZZkmdJZcoQ8HUzihRRX12Bvpg=",
         "owner": "LnL7",
         "repo": "nix-darwin",
-        "rev": "44a7d0e687a87b73facfe94fba78d323a6686a90",
+        "rev": "25381509d5c91bbf3c30e23abc6d8476d2143cd1",
         "type": "github"
       },
       "original": {
@@ -137,11 +138,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1747663185,
-        "narHash": "sha256-Obh50J+O9jhUM/FgXtI3he/QRNiV9+J53+l+RlKSaAk=",
+        "lastModified": 1751903740,
+        "narHash": "sha256-PeSkNMvkpEvts+9DjFiop1iT2JuBpyknmBUs0Un0a4I=",
         "owner": "nix-community",
         "repo": "nixos-generators",
-        "rev": "ee07ba0d36c38e9915c55d2ac5a8fb0f05f2afcc",
+        "rev": "032decf9db65efed428afd2fa39d80f7089085eb",
         "type": "github"
       },
       "original": {
@@ -168,11 +169,27 @@
     },
     "nixpkgs_2": {
       "locked": {
-        "lastModified": 1748344075,
-        "narHash": "sha256-PsZAY3H0e/PBoDVn4fLwGEmeSwESj7SZPZ6CMfgbWFU=",
+        "lastModified": 1754340878,
+        "narHash": "sha256-lgmUyVQL9tSnvvIvBp7x1euhkkCho7n3TMzgjdvgPoU=",
+        "owner": "nixos",
+        "repo": "nixpkgs",
+        "rev": "cab778239e705082fe97bb4990e0d24c50924c04",
+        "type": "github"
+      },
+      "original": {
+        "owner": "nixos",
+        "ref": "nixpkgs-unstable",
+        "repo": "nixpkgs",
+        "type": "github"
+      }
+    },
+    "nixpkgs_3": {
+      "locked": {
+        "lastModified": 1758446476,
+        "narHash": "sha256-5rdAi7CTvM/kSs6fHe1bREIva5W3TbImsto+dxG4mBo=",
         "owner": "NixOS",
         "repo": "nixpkgs",
-        "rev": "e0042dedfbc9134ef973f64e5c7f56a38cc5cc97",
+        "rev": "a1f79a1770d05af18111fbbe2a3ab2c42c0f6cd0",
         "type": "github"
       },
       "original": {
@@ -188,7 +205,7 @@
         "mac-app-util": "mac-app-util",
         "nix-darwin": "nix-darwin",
         "nixos-generators": "nixos-generators",
-        "nixpkgs": "nixpkgs_2",
+        "nixpkgs": "nixpkgs_3",
         "tmux-battery": "tmux-battery",
         "tmux-catppuccin": "tmux-catppuccin",
         "tmux-nerd-font-window-name": "tmux-nerd-font-window-name",
@@ -213,33 +230,33 @@
     "tmux-battery": {
       "flake": false,
       "locked": {
-        "lastModified": 1701419842,
-        "narHash": "sha256-yKMTuRiNnGC3tAbZeWzMEudzhBSJhji8sZh96rFxpb8=",
+        "lastModified": 1749557671,
+        "narHash": "sha256-pOwCN5bKmTK76KVXxh1cBeceQxLJ5mmwGmX5cYEJe9M=",
         "owner": "tmux-plugins",
         "repo": "tmux-battery",
-        "rev": "48fae59ba4503cf345d25e4e66d79685aa3ceb75",
+        "rev": "91b05110cc35863e3f6c3992c9f92916732b26ac",
         "type": "github"
       },
       "original": {
         "owner": "tmux-plugins",
         "repo": "tmux-battery",
-        "rev": "48fae59ba4503cf345d25e4e66d79685aa3ceb75",
+        "rev": "91b05110cc35863e3f6c3992c9f92916732b26ac",
         "type": "github"
       }
     },
     "tmux-catppuccin": {
       "flake": false,
       "locked": {
-        "lastModified": 1731882838,
-        "narHash": "sha256-9+SpgO2Co38I0XnEbRd7TSYamWZNjcVPw6RWJIHM+4c=",
+        "lastModified": 1742721829,
+        "narHash": "sha256-Is0CQ1ZJMXIwpDjrI5MDNHJtq+R3jlNcd9NXQESUe2w=",
         "owner": "catppuccin",
         "repo": "tmux",
-        "rev": "179572333b0473020e45f34fd7c1fd658b2831f4",
+        "rev": "b2f219c00609ea1772bcfbdae0697807184743e4",
         "type": "github"
       },
       "original": {
         "owner": "catppuccin",
-        "ref": "v2.1.1",
+        "ref": "v2.1.3",
         "repo": "tmux",
         "type": "github"
       }
@@ -247,34 +264,52 @@
     "tmux-nerd-font-window-name": {
       "flake": false,
       "locked": {
-        "lastModified": 1731520880,
-        "narHash": "sha256-Iv5XmJZzT20c1dkTaHZkHcxiAKEnzuNy/P22grKJrhg=",
+        "lastModified": 1754319202,
+        "narHash": "sha256-qP9pmJYbcGb1NiophTNexMF/nAQivqUENg8stsOERY4=",
         "owner": "joshmedeski",
         "repo": "tmux-nerd-font-window-name",
-        "rev": "e0f3946227e5e7b5a94a24f973c842fa5a385e7f",
+        "rev": "ab9c2cd2bfbbcf6f85ffff359d69b6a8712daf05",
         "type": "github"
       },
       "original": {
         "owner": "joshmedeski",
         "repo": "tmux-nerd-font-window-name",
-        "rev": "e0f3946227e5e7b5a94a24f973c842fa5a385e7f",
+        "rev": "ab9c2cd2bfbbcf6f85ffff359d69b6a8712daf05",
+        "type": "github"
+      }
+    },
+    "treefmt-nix": {
+      "inputs": {
+        "nixpkgs": "nixpkgs_2"
+      },
+      "locked": {
+        "lastModified": 1755934250,
+        "narHash": "sha256-CsDojnMgYsfshQw3t4zjRUkmMmUdZGthl16bXVWgRYU=",
+        "owner": "numtide",
+        "repo": "treefmt-nix",
+        "rev": "74e1a52d5bd9430312f8d1b8b0354c92c17453e5",
+        "type": "github"
+      },
+      "original": {
+        "owner": "numtide",
+        "repo": "treefmt-nix",
         "type": "github"
       }
     },
     "vim-tmux-navigator": {
       "flake": false,
       "locked": {
-        "lastModified": 1730652772,
-        "narHash": "sha256-2ObHLgdrv7UftZbaICPEpftEZMY0sTqyPgK1x9rQS9Q=",
+        "lastModified": 1752544267,
+        "narHash": "sha256-IEPnr/GdsAnHzdTjFnXCuMyoNLm3/Jz4cBAM0AJBrj8=",
         "owner": "christoomey",
         "repo": "vim-tmux-navigator",
-        "rev": "2d8bc8176af90935fb918526b0fde73d6ceba0df",
+        "rev": "c45243dc1f32ac6bcf6068e5300f3b2b237e576a",
         "type": "github"
       },
       "original": {
         "owner": "christoomey",
         "repo": "vim-tmux-navigator",
-        "rev": "2d8bc8176af90935fb918526b0fde73d6ceba0df",
+        "rev": "c45243dc1f32ac6bcf6068e5300f3b2b237e576a",
         "type": "github"
       }
     }
