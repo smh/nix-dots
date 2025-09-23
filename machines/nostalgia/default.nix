@@ -7,7 +7,7 @@
     inputs.home-manager.darwinModules.home-manager
     ../../modules/darwin
     ./homebrew.nix
-    ./plex-media-server.nix
+    # ./plex-media-server.nix
   ];
 
   nixpkgs = {
@@ -25,6 +25,11 @@
     useUserPackages = true;
     backupFileExtension = "nix-backup";
     users.smh = import ../../home/smh;
+    
+    # Enable mac-app-util for all users
+    sharedModules = [
+      inputs.mac-app-util.homeManagerModules.default
+    ];
   };
 
   networking.hostName = "nostalgia";

@@ -2,7 +2,7 @@
   pkgs,
   lib,
   config,
-  # inputs,
+  inputs,
   ...
 }: {
   imports = [
@@ -31,7 +31,7 @@
       # nerdfonts.firacode
 
       # Development tools (keep in user profile)
-      yarn
+      yarn-berry
       python3
       ruby
     ];

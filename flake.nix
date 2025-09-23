@@ -35,6 +35,7 @@
       url = "github:christoomey/vim-tmux-navigator/2d8bc8176af90935fb918526b0fde73d6ceba0df";
       flake = false;
     };
+    mac-app-util.url = "github:hraban/mac-app-util";
   };
 
   outputs = inputs @ {
@@ -53,7 +54,10 @@
       nostalgia = nix-darwin.lib.darwinSystem {
         system = "aarch64-darwin";
         specialArgs = {inherit self inputs;};
-        modules = [./machines/nostalgia];
+        modules = [
+          ./machines/nostalgia
+          inputs.mac-app-util.darwinModules.default
+        ];
       };
     };
 
