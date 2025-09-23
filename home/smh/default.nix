@@ -10,6 +10,7 @@
     ./programs/git
     ./programs/tmux # { inherit inputs; }
     ./programs/wezterm
+    ./programs/ghostty
   ];
 
   home = {
@@ -27,7 +28,7 @@
       # User-specific tools not in system packages
       glow
       hub
-      # ghostty - currently (1.1.2) marked broken on darwin
+      ghostty-bin
       # nerdfonts.firacode
 
       # Development tools (keep in user profile)
