@@ -62,6 +62,16 @@
         dc = "docker compose";
         tm = "task-master";
       };
+      interactiveShellInit = ''
+        # SSH Agent forwarding fix for tmux
+        # Create a stable symlink for tmux to use across SSH reconnections
+        if test -n "$SSH_AUTH_SOCK" -a "$SSH_AUTH_SOCK" != "$HOME/.ssh/ssh_auth_sock"
+          # Remove old symlink if it exists
+          rm -f $HOME/.ssh/ssh_auth_sock
+          # Create new symlink pointing to current SSH auth socket
+          ln -sf $SSH_AUTH_SOCK $HOME/.ssh/ssh_auth_sock
+        end
+      '';
       plugins = [
         {
           name = "fzf-fish";

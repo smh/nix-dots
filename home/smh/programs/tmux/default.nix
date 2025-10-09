@@ -147,8 +147,8 @@
       bind-key Space copy-mode
       bind-key C-Space last-window
 
-      # SSH agent fix
-      # TODO: see https://stackoverflow.com/a/23187030
+      # SSH agent fix - use stable symlink that gets updated by fish shell init
+      # The symlink is created/updated on each SSH connection in home/smh/default.nix
       setenv -g SSH_AUTH_SOCK $HOME/.ssh/ssh_auth_sock
 
       # Split windows
