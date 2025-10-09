@@ -24,18 +24,21 @@
     # changes in each release.
     stateVersion = "24.05";
 
-    packages = with pkgs; [
-      # User-specific tools not in system packages
-      glow
-      hub
-      ghostty-bin
-      # nerdfonts.firacode
+    packages = with pkgs;
+      [
+        # User-specific tools not in system packages
+        glow
+        hub
+        # nerdfonts.firacode
 
-      # Development tools (keep in user profile)
-      yarn-berry
-      python3
-      ruby
-    ];
+        # Development tools (keep in user profile)
+        yarn-berry
+        python3
+        ruby
+      ]
+      ++ lib.optionals pkgs.stdenv.isDarwin [
+        ghostty-bin
+      ];
 
     file.".npmrc".text = ''
       prefix=${config.home.homeDirectory}/.cache/npm/global
@@ -108,7 +111,7 @@
     };
 
     # AeroSpace window manager
-    aerospace = {
+    aerospace = lib.mkIf pkgs.stdenv.isDarwin {
       enable = true;
       launchd.enable = true;
       userSettings = {
@@ -246,7 +249,7 @@
   };
 
   # JankyBorders - adds visual borders around windows
-  services.jankyborders = {
+  services.jankyborders = lib.mkIf pkgs.stdenv.isDarwin {
     enable = true;
     settings = {
       active_color = "0xffe1e3e4";

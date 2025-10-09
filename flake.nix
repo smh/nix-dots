@@ -85,6 +85,14 @@
           ./machines/chasm-city-proxmox-lxc
         ];
       };
+
+      resurgam = nixpkgs.lib.nixosSystem {
+        system = "x86_64-linux";
+        specialArgs = {inherit self inputs;};
+        modules = [
+          ./machines/resurgam
+        ];
+      };
     };
 
     # Add VmWare image generation
@@ -105,6 +113,15 @@
         specialArgs = {inherit self inputs;};
         modules = [
           ./machines/chasm-city-proxmox-lxc
+        ];
+      };
+
+      x86_64-linux.resurgam-lxc = nixos-generators.nixosGenerate {
+        system = "x86_64-linux";
+        format = "proxmox-lxc";
+        specialArgs = {inherit self inputs;};
+        modules = [
+          ./machines/resurgam
         ];
       };
     };

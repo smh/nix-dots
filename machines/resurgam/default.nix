@@ -1,0 +1,59 @@
+{
+  inputs,
+  outputs,
+  modulesPath,
+  pkgs,
+  ...
+}: {
+  imports = [
+    inputs.home-manager.nixosModules.home-manager
+    ./hardware.nix
+    ../../modules/nixos
+  ];
+
+  home-manager = {
+    extraSpecialArgs = {inherit inputs outputs;};
+    useGlobalPkgs = true;
+    useUserPackages = true;
+    users.smh = import ../../home/smh;
+  };
+
+  time.timeZone = "Asia/Dubai";
+  services.openssh.enable = true;
+
+  networking.hostName = "resurgam";
+
+  # Docker for running databases and applications
+  virtualisation = {
+    docker = {
+      enable = true;
+      autoPrune = {
+        enable = true;
+        dates = "weekly";
+      };
+    };
+  };
+
+  # Development packages for Java/React development
+  environment.systemPackages = with pkgs; [
+    docker-compose
+    git
+    # Java development
+    jdk21
+    maven
+    gradle
+    # Node.js for React development
+    nodejs_22
+    # Useful tools
+    vim
+    tmux
+    htop
+    curl
+    wget
+  ];
+
+  users.users.smh.extraGroups = ["docker"];
+
+  nixpkgs.config.allowUnfree = true;
+  nixpkgs.config.allowUnsupportedSystem = true;
+}

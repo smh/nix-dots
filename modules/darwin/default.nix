@@ -42,7 +42,10 @@
   ];
 
   # Necessary for using flakes on this system.
-  nix.settings.experimental-features = "nix-command flakes";
+  nix.settings = {
+    experimental-features = "nix-command flakes";
+    extra-platforms = "x86_64-darwin aarch64-darwin x86_64-linux aarch64-linux";
+  };
 
   # Set Git commit hash for darwin-version.
   system.configurationRevision = self.rev or self.dirtyRev or null;

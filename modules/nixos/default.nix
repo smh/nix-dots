@@ -31,7 +31,6 @@
 
     # Tools that need system-level access
     lazydocker
-    wezterm
   ];
 
   # Auto upgrade nix package and the daemon service.

@@ -4,7 +4,7 @@
   config,
   ...
 }: {
-  programs.ghostty = {
+  programs.ghostty = lib.mkIf pkgs.stdenv.isDarwin {
     enable = true;
 
     # Use binary package since source package isn't available on aarch64-darwin
