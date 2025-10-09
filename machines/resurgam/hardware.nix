@@ -7,7 +7,7 @@
   boot.loader.grub.enable = false;
 
   networking = {
-    useDHCP = false;
+    useDHCP = true;
     useHostResolvConf = false;
   };
 

@@ -4,6 +4,8 @@
   inputs = {
     nixpkgs.url = "github:NixOS/nixpkgs/nixpkgs-unstable";
 
+    # ghostty.url = "github:ghostty-org/ghostty";
+
     nix-darwin = {
       url = "github:LnL7/nix-darwin";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -41,6 +43,7 @@
   outputs = inputs @ {
     self,
     nixpkgs,
+    # ghostty,
     nix-darwin,
     nixos-generators,
     ...
@@ -95,7 +98,7 @@
       };
     };
 
-    # Add VmWare image generation
+    # Add VmWare and lxc image generation
     packages = {
       x86_64-linux.chasm-city = nixos-generators.nixosGenerate {
         system = "x86_64-linux";

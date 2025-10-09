@@ -50,7 +50,13 @@
     htop
     curl
     wget
+    # mainly for the correct terminal xterm-ghostty
+    ghostty
+    # inputs.ghostty.packages.x86_64-linux.default
   ];
+
+  #environment.etc."terminfo/x/xterm-ghostty".source = "${pkgs.ghostty}/share/terminfo/x/xterm-ghostty";
+
 
   users.users.smh.extraGroups = ["docker"];
 
