@@ -35,16 +35,58 @@
     };
   };
 
+  # nix-ld for running precompiled binaries (IntelliJ Gateway, Playwright)
+  programs.nix-ld = {
+    enable = true;
+    libraries = with pkgs; [
+      # Core libraries
+      stdenv.cc.cc.lib  # C++ standard library
+      zlib              # Compression (Git, many tools)
+      openssl           # TLS/SSL for Git, network
+      curl              # Network operations
+      icu               # Unicode support (needed by many tools)
+      libgcc            # GCC runtime
+
+      # Playwright browser dependencies
+      nss
+      nspr
+      dbus
+      atk
+      at-spi2-atk
+      expat
+      libxcb
+      libxkbcommon
+      at-spi2-core
+      xorg.libX11
+      xorg.libXcomposite
+      xorg.libXdamage
+      xorg.libXext
+      xorg.libXfixes
+      xorg.libXrandr
+      mesa
+      libgbm
+      libdrm
+      pango
+      cairo
+      gdk-pixbuf
+      glib
+      gtk3
+      cups
+      systemd  # provides libudev
+      alsa-lib
+    ];
+  };
+
   # Development packages for Java/React development
   environment.systemPackages = with pkgs; [
     docker-compose
     git
     # Java development
-    jdk21
+    graalvm-ce
     maven
     gradle
     # Node.js for React development
-    nodejs_22
+    nodejs_24
     # Useful tools
     vim
     tmux
