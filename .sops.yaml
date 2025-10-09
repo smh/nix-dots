@@ -1,0 +1,41 @@
+keys:
+  # Personal age key for manual secret management
+  - &admin age1f29rsezfv7rf2v9p0wvr7q3w69hdzcxf8mxvysavsr5e60dwkgmsvnu0q0
+
+  # Machine SSH host keys (converted to age keys)
+  # TODO: Replace these placeholders with actual SSH host keys from your machines
+  # Run on each machine: cat /etc/ssh/ssh_host_ed25519_key.pub | ssh-to-age
+  - &chasm-city age1pdf7uhxnjnm9ddalu0p7jxq0a6mtnc3zvznz9dlt3vw83r59x49q9x26yf
+  - &resurgam age1pl4h7wrsd3e2cgjw3xwxqedyw9xssm9nqmp58pdrslukfyhkypfsjyahux
+  - &nostalgia age1pl6ydgdmn9m2m7rqqa786lzz5cd0muzf9ghddnllghteq8r6kfks26q2ng
+
+creation_rules:
+  # Common secrets (available to all machines)
+  - path_regex: secrets/common\.yaml$
+    key_groups:
+      - age:
+          - *admin
+          - *chasm-city
+          - *resurgam
+          - *nostalgia
+
+  # Homelab-specific secrets (for media server machines)
+  - path_regex: secrets/homelab\.yaml$
+    key_groups:
+      - age:
+          - *admin
+          - *chasm-city
+
+  # User secrets (passwords, etc.)
+  - path_regex: secrets/users\.yaml$
+    key_groups:
+      - age:
+          - *admin
+          - *chasm-city
+          - *resurgam
+
+  # Catch-all for any other files in secrets/
+  - path_regex: secrets/.*\.yaml$
+    key_groups:
+      - age:
+          - *admin

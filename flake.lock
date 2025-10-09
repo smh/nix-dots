@@ -206,10 +206,31 @@
         "nix-darwin": "nix-darwin",
         "nixos-generators": "nixos-generators",
         "nixpkgs": "nixpkgs_3",
+        "sops-nix": "sops-nix",
         "tmux-battery": "tmux-battery",
         "tmux-catppuccin": "tmux-catppuccin",
         "tmux-nerd-font-window-name": "tmux-nerd-font-window-name",
         "vim-tmux-navigator": "vim-tmux-navigator"
+      }
+    },
+    "sops-nix": {
+      "inputs": {
+        "nixpkgs": [
+          "nixpkgs"
+        ]
+      },
+      "locked": {
+        "lastModified": 1759635238,
+        "narHash": "sha256-UvzKi02LMFP74csFfwLPAZ0mrE7k6EiYaKecplyX9Qk=",
+        "owner": "Mic92",
+        "repo": "sops-nix",
+        "rev": "6e5a38e08a2c31ae687504196a230ae00ea95133",
+        "type": "github"
+      },
+      "original": {
+        "owner": "Mic92",
+        "repo": "sops-nix",
+        "type": "github"
       }
     },
     "systems": {

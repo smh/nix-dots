@@ -36,6 +36,10 @@
     nixos-rebuild
     nodejs_24
 
+    # Secrets Management
+    sops
+    ssh-to-age
+
     # Tools that need system-level access
     lazydocker
     wezterm

@@ -16,8 +16,21 @@ in {
 
   systemd.tmpfiles.rules = [
     "d ${configDir} 0755 recyclarr recyclarr -"
-    "L+ ${configDir}/recyclarr.yml 0644 recyclarr recyclarr - ${./recyclarr.yml}"
   ];
+
+  # Use sops-nix template for recyclarr config with secrets
+  sops.templates."recyclarr.yml" = {
+    owner = "recyclarr";
+    group = "recyclarr";
+    mode = "0640";
+    path = "${configDir}/recyclarr.yml";
+    content = ''
+      ${builtins.replaceStrings
+        ["\"299dbddd87a34cd79ee9fb0b0d7773ec\"" "\"b248e1731c334e53927467579cd76af5\""]
+        ["\${config.sops.placeholder.sonarr-api-key}" "\${config.sops.placeholder.radarr-api-key}"]
+        (builtins.readFile ./recyclarr.yml)}
+    '';
+  };
 
   systemd.services.recyclarr-sync = {
     description = "Recyclarr Sync Service";

@@ -7,6 +7,7 @@
 }: {
   imports = [
     inputs.home-manager.nixosModules.home-manager
+    inputs.sops-nix.nixosModules.sops
     ./hardware.nix
     ../../modules/nixos
   ];
@@ -62,4 +63,10 @@
 
   nixpkgs.config.allowUnfree = true;
   nixpkgs.config.allowUnsupportedSystem = true;
+
+  # sops-nix configuration
+  sops = {
+    defaultSopsFile = ../../secrets/common.yaml;
+    age.sshKeyPaths = ["/etc/ssh/ssh_host_ed25519_key"];
+  };
 }

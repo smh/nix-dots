@@ -26,6 +26,7 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 - `/home`: User-specific configurations (home-manager)
 - `/modules`: Shared configuration modules
 - `/overlays`: Package customizations and overrides
+- `/secrets`: Encrypted secrets managed by sops-nix
 
 ## Architecture
 This is a multi-platform Nix configuration using flakes:
@@ -35,3 +36,26 @@ This is a multi-platform Nix configuration using flakes:
 - **Homelab module**: Docker Compose-based media server stack (*arr services) with NFS mounts
 - **Flake inputs**: All dependencies pinned through flake.lock
 - **nixos-generators**: Used for building VM and container images
+- **sops-nix**: Secrets management using age encryption
+
+## Secrets Management
+This repository uses sops-nix for managing secrets:
+- **Encryption**: Secrets are encrypted with age keys
+- **Private keys**: Located in `secrets/keys.txt` (NEVER commit this file)
+- **Encrypted secrets**: Safe to commit to git repository
+  - `secrets/common.yaml` - Common secrets (SSH keys, etc.)
+  - `secrets/homelab.yaml` - Homelab API keys (*arr services)
+  - `secrets/users.yaml` - User password hashes
+
+### Working with Secrets
+```bash
+# Edit secrets (requires personal age key)
+export SOPS_AGE_KEY_FILE=./secrets/keys.txt
+nix-shell -p sops --run "sops secrets/common.yaml"
+
+# Add machine SSH keys (run on each machine)
+nix-shell -p ssh-to-age --run "cat /etc/ssh/ssh_host_ed25519_key.pub | ssh-to-age"
+# Then add the output to .sops.yaml under the keys section
+```
+
+See `secrets/README.md` for detailed documentation.

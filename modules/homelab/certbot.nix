@@ -12,8 +12,8 @@
     homeMode = "0750";
     createHome = true;
     shell = pkgs.bash;
-    openssh.authorizedKeys.keys = [
-      "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIJS3JA4e2jVIzVOQ6Lk6JwuZLfJk7MObSty6Vrkb3BNX pfSense ACME cert sync" # Replace with your pfSense key
+    openssh.authorizedKeys.keyFiles = [
+      config.sops.secrets.certbot-ssh-key.path
     ];
   };
   users.groups.certbot = {};

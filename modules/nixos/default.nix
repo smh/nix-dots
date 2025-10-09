@@ -1,4 +1,5 @@
 {
+  config,
   pkgs,
   self,
   ...
@@ -31,6 +32,10 @@
 
     # Tools that need system-level access
     lazydocker
+
+    # Secrets management
+    sops
+    ssh-to-age
   ];
 
   # Auto upgrade nix package and the daemon service.
@@ -76,12 +81,19 @@
     # uid = 501;
     shell = pkgs.fish;
     home = "/home/smh";
-    password = "rema1000";
+    hashedPasswordFile = config.sops.secrets.smh-password.path;
     isNormalUser = true;
     extraGroups = ["wheel" "networkmanager"];
     openssh.authorizedKeys.keys = [
       "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIGDdhFAELwOVPH8ywfeOqgty+vMtepL+vftzh8xIOF3Y smh@Jennifer.svingen"
     ];
+  };
+
+  # Define sops secrets for user passwords
+  sops.secrets.smh-password = {
+    sopsFile = ../../secrets/users.yaml;
+    key = "smh/hashedPassword";
+    neededForUsers = true;
   };
 
   # Enable password-based SSH login for root

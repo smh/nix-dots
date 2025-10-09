@@ -1,0 +1,16 @@
+# sops-nix private keys - NEVER COMMIT THESE
+secrets/keys.txt
+secrets/**/*key*.txt
+secrets/**/*key*.age
+
+# Build results
+result
+result-*
+
+# Editor files
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+.DS_Store
