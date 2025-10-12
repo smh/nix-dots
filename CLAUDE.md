@@ -8,9 +8,27 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 - Format code: `nix fmt`
 - Build darwin system: `darwin-rebuild switch --flake .#nostalgia`
 - Build NixOS system: `nixos-rebuild switch --flake .#chasm-city`
-- Build VM image: `nix build .#chasm-city`
-- Build LXC container: `nix build .#chasm-city-lxc`
+- Build VM image: `nix build .#chasm-city` (requires x86_64-linux)
+- Build LXC container: `nix build .#chasm-city-lxc` (requires x86_64-linux)
 - Format with Alejandra: `nix fmt`
+
+### Building Images for Proxmox
+Since building x86_64-linux images on aarch64-darwin (Mac) requires slow emulation, use the dedicated `nix-builder` LXC container on Proxmox:
+
+```bash
+# SSH into builder
+ssh smh@nix-builder.lan
+cd ~/nix-dots
+
+# Build and deploy (using helper script)
+./scripts/build-and-deploy.sh resurgam-lxc
+
+# Or manually
+nix build .#packages.x86_64-linux.resurgam-lxc
+cp result/tarball/*.tar.xz /proxmox/template/cache/resurgam.tar.xz
+```
+
+See [docs/nix-builder-bootstrap.md](docs/nix-builder-bootstrap.md) for complete setup instructions.
 
 ## Code Style
 - Nix formatting: 2-space indentation, formatted with Alejandra
@@ -31,12 +49,16 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 ## Architecture
 This is a multi-platform Nix configuration using flakes:
 - **Darwin support**: macOS systems via nix-darwin (machine: nostalgia)
-- **NixOS support**: Linux systems with VM/container variants (machines: chasm-city, chasm-city-proxmox-lxc)
-- **Home-manager integration**: Platform-agnostic user configurations
+- **NixOS support**: Linux systems with VM/container variants
+  - `chasm-city`: VM image for Proxmox with homelab services
+  - `chasm-city-proxmox-lxc`: LXC container variant with homelab services
+  - `resurgam`: Development LXC container with Docker, Java, and Node.js
+- **Home-manager integration**: Platform-agnostic user configurations (Darwin-specific modules conditionally enabled)
 - **Homelab module**: Docker Compose-based media server stack (*arr services) with NFS mounts
 - **Flake inputs**: All dependencies pinned through flake.lock
 - **nixos-generators**: Used for building VM and container images
 - **sops-nix**: Secrets management using age encryption
+- **Build infrastructure**: Dedicated `nix-builder` LXC on Proxmox for native x86_64-linux builds
 
 ## Secrets Management
 This repository uses sops-nix for managing secrets:
