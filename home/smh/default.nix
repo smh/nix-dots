@@ -8,6 +8,7 @@
   imports = [
     # ./modules/fonts
     ./programs/git
+    ./programs/nvim
     ./programs/tmux # { inherit inputs; }
     ./programs/wezterm
     ./programs/ghostty
@@ -82,10 +83,6 @@
     gh = {
       enable = true;
       gitCredentialHelper.enable = true;
-    };
-    neovim = {
-      enable = true;
-      defaultEditor = true;
     };
     starship = {
       enable = true;
